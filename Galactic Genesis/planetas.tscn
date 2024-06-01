@@ -1,0 +1,27 @@
+[gd_scene load_steps=7 format=3 uid="uid://cx53ort6nqr8j"]
+
+[ext_resource type="Texture2D" uid="uid://blxlcpuru47mf" path="res://art/coast_sand_rocks_02_diff_4k.jpg" id="1_0pfgd"]
+[ext_resource type="Texture2D" uid="uid://de141i8euh26y" path="res://art/coast_sand_rocks_02_rough_4k.jpg" id="2_e7c27"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_g50lk"]
+radius = 500.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_h0iic"]
+radius = 500.0
+height = 1000.0
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_bb4n6"]
+panorama = ExtResource("1_0pfgd")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gfhad"]
+next_pass = SubResource("PanoramaSkyMaterial_bb4n6")
+roughness_texture = ExtResource("2_e7c27")
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Planetas" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_g50lk")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Planetas"]
+mesh = SubResource("SphereMesh_h0iic")
+surface_material_override/0 = SubResource("StandardMaterial3D_gfhad")

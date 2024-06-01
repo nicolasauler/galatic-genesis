@@ -1,0 +1,51 @@
+[gd_scene load_steps=8 format=3 uid="uid://b5lyo17elmm6a"]
+
+[ext_resource type="PackedScene" uid="uid://ssec6cf76612" path="res://art/astro.glb" id="1_elguq"]
+[ext_resource type="Script" path="res://player.gd" id="1_kbcbj"]
+[ext_resource type="Script" path="res://Camera3D.gd" id="3_7ji8q"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_cbfj8"]
+radius = 0.268006
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_ehdku"]
+height = 1.71373
+radius = 0.078408
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_mjfp7"]
+size = Vector3(0.377197, 0.47934, 0.165466)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_spgcm"]
+height = 1.31738
+radius = 0.273019
+
+[node name="Player" type="CharacterBody3D"]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
+script = ExtResource("1_kbcbj")
+
+[node name="CameraPivot" type="Marker3D" parent="."]
+transform = Transform3D(-0.002, 0, -1.74846e-10, 0, 0.002, 0, 1.74846e-10, 0, -0.002, 0, 1.12007, 0.298418)
+
+[node name="Camera3D" type="Camera3D" parent="CameraPivot"]
+transform = Transform3D(10, 0, 0, 0, 10, 4.76837e-07, 0, -4.76837e-07, 10, -7.96623e-05, 43.0555, 1118.4)
+script = ExtResource("3_7ji8q")
+
+[node name="Pivot" type="Node3D" parent="."]
+
+[node name="Astronaut" parent="Pivot" instance=ExtResource("1_elguq")]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
+
+[node name="Head" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.10243, 0)
+shape = SubResource("SphereShape3D_cbfj8")
+
+[node name="Arms" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.0073129, -0.999973, 0, 0.999973, 0.0073129, 0, 0, 0, 1, 0, 0.800479, 0)
+shape = SubResource("CylinderShape3D_ehdku")
+
+[node name="Bag" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00524902, 0.746437, -0.260392)
+shape = SubResource("BoxShape3D_mjfp7")
+
+[node name="Body" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.686874, 0)
+shape = SubResource("CylinderShape3D_spgcm")
