@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://bchnfjgd486dq"]
+
+[ext_resource type="PackedScene" uid="uid://bo6yg0oii4yex" path="res://planet2.glb" id="1_gvq3i"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="planet2" parent="." instance=ExtResource("1_gvq3i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 143.187, 163.787, 264.388)
+
+[node name="Sphere_001" parent="planet2" index="1"]
+visible = false
+
+[editable path="planet2"]
