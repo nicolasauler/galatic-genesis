@@ -1,0 +1,94 @@
+[gd_scene load_steps=16 format=3 uid="uid://bau14l2y105yk"]
+
+[ext_resource type="Texture2D" uid="uid://ck8rs3ax6g0ot" path="res://ESO_-_Milky_Way.jpg" id="1_g2mgw"]
+[ext_resource type="Script" path="res://SunCenter.gd" id="3_hjxb1"]
+[ext_resource type="PackedScene" uid="uid://dg7gaj6seso2e" path="res://player.tscn" id="3_wgpgr"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_ck3a7"]
+panorama = ExtResource("1_g2mgw")
+
+[sub_resource type="Sky" id="Sky_oss84"]
+sky_material = SubResource("PanoramaSkyMaterial_ck3a7")
+
+[sub_resource type="Environment" id="Environment_4ei2q"]
+background_mode = 2
+sky = SubResource("Sky_oss84")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3unct"]
+shading_mode = 0
+albedo_color = Color(1, 1, 0, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_p65bb"]
+material = SubResource("StandardMaterial3D_3unct")
+radius = 50.0
+height = 100.0
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_5avat"]
+radius = 50.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h0xis"]
+albedo_color = Color(1, 0.0683692, 0.208783, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_ppa3r"]
+material = SubResource("StandardMaterial3D_h0xis")
+radius = 15.0
+height = 30.0
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_o6j3v"]
+radius = 15.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_epn1m"]
+albedo_color = Color(0, 1, 1, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_685s7"]
+material = SubResource("StandardMaterial3D_epn1m")
+radius = 20.0
+height = 40.0
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_8lown"]
+radius = 20.0
+
+[node name="SolarSystem" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_4ei2q")
+
+[node name="Sun" type="StaticBody3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Sun"]
+mesh = SubResource("SphereMesh_p65bb")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Sun"]
+omni_range = 1000.0
+omni_attenuation = 0.000106267
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Sun"]
+shape = SubResource("SphereShape3D_5avat")
+
+[node name="Player" parent="." instance=ExtResource("3_wgpgr")]
+visible = false
+
+[node name="SunCenter" type="Node3D" parent="."]
+script = ExtResource("3_hjxb1")
+
+[node name="Mars" type="StaticBody3D" parent="SunCenter"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -328.33)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="SunCenter/Mars"]
+mesh = SubResource("SphereMesh_ppa3r")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SunCenter/Mars"]
+shape = SubResource("SphereShape3D_o6j3v")
+
+[node name="Earth" type="StaticBody3D" parent="SunCenter"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -227.449)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="SunCenter/Earth"]
+mesh = SubResource("SphereMesh_685s7")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SunCenter/Earth"]
+shape = SubResource("SphereShape3D_8lown")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1.19249e-08, 1, 0, -1, 1.19249e-08, 0, 1000, 0)
+current = true
