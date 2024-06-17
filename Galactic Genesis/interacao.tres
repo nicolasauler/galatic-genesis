@@ -1,8 +1,0 @@
-[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://ld8w5402wos8"]
-
-[ext_resource type="Shader" path="res://interacao.gdshader" id="1_6smp2"]
-
-[resource]
-render_priority = 0
-shader = ExtResource("1_6smp2")
-shader_parameter/strength = null
