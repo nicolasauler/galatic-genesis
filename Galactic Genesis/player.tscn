@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://b5lyo17elmm6a"]
+[gd_scene load_steps=9 format=3 uid="uid://b5lyo17elmm6a"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_kbcbj"]
 [ext_resource type="Script" path="res://Camera3D.gd" id="3_7ji8q"]
 [ext_resource type="Script" path="res://RayCast3D.gd" id="3_20lv8"]
+[ext_resource type="Texture2D" uid="uid://7ancfiqlniem" path="res://focus.png" id="4_dspgi"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_cbfj8"]
 radius = 0.268006
@@ -26,12 +27,21 @@ script = ExtResource("1_kbcbj")
 transform = Transform3D(-0.002, 0, -1.74846e-10, 0, 0.002, 0, 1.74846e-10, 0, -0.002, 0, 1.12007, 0.298418)
 
 [node name="Camera3D" type="Camera3D" parent="CameraPivot"]
-transform = Transform3D(50, 0, 0, 0, 50, 2.38418e-06, 0, -2.38418e-06, 50, -254.157, 43.0555, 159.513)
+transform = Transform3D(50, 0, 0, 0, 50, 2.38418e-06, 0, -2.38418e-06, 50, 0, 0, 0)
 script = ExtResource("3_7ji8q")
 
 [node name="RayCast3D" type="RayCast3D" parent="CameraPivot/Camera3D"]
 target_position = Vector3(0, 0, -10)
 script = ExtResource("3_20lv8")
+
+[node name="TextureRect" type="TextureRect" parent="CameraPivot/Camera3D"]
+visible = false
+offset_left = 550.0
+offset_top = 300.0
+offset_right = 1062.0
+offset_bottom = 812.0
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("4_dspgi")
 
 [node name="Head" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.10243, 0)

@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://dgdklpn4a5vj4"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_kptlm"]
+radius = 500.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_q6mag"]
+radius = 500.0
+height = 1000.0
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_edj52"]
+radius = 2000.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_1raym"]
+radius = 2000.0
+height = 4000.0
+
+[node name="planets" type="Node3D"]
+
+[node name="Planet 1" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 0, 60)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Planet 1"]
+shape = SubResource("SphereShape3D_kptlm")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Planet 1/CollisionShape3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 722.103, 0, 0)
+mesh = SubResource("SphereMesh_q6mag")
+
+[node name="Planet 2" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1000, 0, 800)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Planet 2"]
+shape = SubResource("SphereShape3D_edj52")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Planet 2/CollisionShape3D"]
+mesh = SubResource("SphereMesh_1raym")
