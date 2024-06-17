@@ -1,7 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://v447hvg3lggy"]
+[gd_scene load_steps=9 format=3 uid="uid://v447hvg3lggy"]
 
 [ext_resource type="PackedScene" uid="uid://b5lyo17elmm6a" path="res://player.tscn" id="1_nh3vi"]
-[ext_resource type="PackedScene" uid="uid://dgdklpn4a5vj4" path="res://planets.tscn" id="2_ba8e6"]
+[ext_resource type="PackedScene" uid="uid://cx53ort6nqr8j" path="res://planetas.tscn" id="2_fuiwf"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ev3u5"]
 sky_top_color = Color(0.0117647, 0, 0.219608, 1)
@@ -19,10 +19,6 @@ sky = SubResource("Sky_31ra6")
 ssao_enabled = true
 sdfgi_enabled = true
 glow_enabled = true
-fog_enabled = true
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_hn8n3"]
-size = Vector3(500000, 1000, 500000)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_eexs8"]
 radius = 500.0
@@ -42,15 +38,8 @@ height = 1000.0
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_mtkpm")
 
-[node name="Limites" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -100, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Limites"]
-shape = SubResource("BoxShape3D_hn8n3")
-
 [node name="Player" parent="." instance=ExtResource("1_nh3vi")]
-transform = Transform3D(50, 0, 0, 0, 50, 0, 0, 0, 50, 0, 48.761, 0)
-visible = false
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 48.761, 0)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -0.927921, 0.372777, 0, -0.372777, -0.927921, -1.55237, 1656.3, -0.452393)
@@ -58,12 +47,11 @@ light_color = Color(0.974932, 0.978496, 0.670175, 1)
 light_energy = 16.0
 shadow_enabled = true
 
-[node name="planets" parent="." instance=ExtResource("2_ba8e6")]
-transform = Transform3D(0.999999, 0, -0.00132645, 0, 1, 0, 0.00132645, 0, 0.999999, 0, 0, 0)
-visible = false
+[node name="planetas" parent="." instance=ExtResource("2_fuiwf")]
 
 [node name="Planet 1" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1570.46, 0, 60)
+visible = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Planet 1"]
 shape = SubResource("SphereShape3D_eexs8")
