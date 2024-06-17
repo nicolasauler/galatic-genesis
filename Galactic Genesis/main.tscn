@@ -48,6 +48,7 @@ light_energy = 16.0
 shadow_enabled = true
 
 [node name="planetas" parent="." instance=ExtResource("2_fuiwf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.758514, 0.809258, -4.92142)
 
 [node name="Planet 1" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1570.46, 0, 60)
