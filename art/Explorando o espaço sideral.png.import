@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://d3ag4hym0xqxa"
-path.s3tc="res://.godot/imported/Explorando o espaço sideral.png-b70dc593a13e7dbdf9a2c7bb78d00b3e.s3tc.ctex"
+path.s3tc="res://.godot/imported/Explorando o espaço sideral.png-393157a34d7d7fc14d5035a3051ad760.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://art/Explorando o espaço sideral.png"
-dest_files=["res://.godot/imported/Explorando o espaço sideral.png-b70dc593a13e7dbdf9a2c7bb78d00b3e.s3tc.ctex"]
+source_file="res://art/Explorando o espaço sideral.png"
+dest_files=["res://.godot/imported/Explorando o espaço sideral.png-393157a34d7d7fc14d5035a3051ad760.s3tc.ctex"]
 
 [params]
 

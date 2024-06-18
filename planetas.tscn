@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://planet2 (2).gd" id="2_808l6"]
 [ext_resource type="Texture2D" uid="uid://dnwqjhnsl0d2b" path="res://planet2 (2)_baked_color.png" id="2_eo64b"]
 [ext_resource type="Material" uid="uid://ld8w5402wos8" path="res://interacao.tres" id="3_uyctw"]
-[ext_resource type="Texture2D" uid="uid://d3ag4hym0xqxa" path="res://art/Explorando o espaço sideral.png" id="4_6i7j7"]
+[ext_resource type="Texture2D" uid="uid://d3ag4hym0xqxa" path="res://art/Explorando o espaço sideral.png" id="4_6i7j7"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ypw7e"]
 albedo_texture = ExtResource("2_eo64b")
@@ -47,11 +47,8 @@ size = Vector2(150, 100)
 
 [node name="Node3D" type="Node3D"]
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -681.276, 49.269, 533.242)
-
 [node name="planet2 (2)" parent="." instance=ExtResource("1_j1bwr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -975.017, 45.0942, 198.129)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6367.02, 440.094, 369.129)
 script = ExtResource("2_808l6")
 
 [node name="Sphere" parent="planet2 (2)" index="0"]
@@ -74,17 +71,20 @@ mesh = SubResource("SphereMesh_ddad7")
 skeleton = NodePath("../Sphere")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="planet2 (2)/MeshInstance3D"]
-visible = false
 mesh = SubResource("ArrayMesh_byvqs")
 
-[node name="description" type="Node3D" parent="."]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -681.276, 0, 533.242)
+[node name="description" type="Node3D" parent="planet2 (2)"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 500, 0, 0)
 
-[node name="MeshInstanceDescription" type="MeshInstance3D" parent="description"]
+[node name="MeshInstanceDescription" type="MeshInstance3D" parent="planet2 (2)/description"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.522, 0, 0)
-visible = false
 material_override = SubResource("StandardMaterial3D_gngmg")
 mesh = SubResource("QuadMesh_gmhfr")
+
+[node name="Label" type="Label3D" parent="planet2 (2)"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 477.951, 0, 0)
+pixel_size = 1.0
+text = "asdfasdasfasf"
 
 [connection signal="input_event" from="planet2 (2)/Sphere/Area3D" to="planet2 (2)" method="_on_area_3d_input_event"]
 [connection signal="mouse_entered" from="planet2 (2)/Sphere/Area3D" to="planet2 (2)" method="_on_area_3d_mouse_entered"]

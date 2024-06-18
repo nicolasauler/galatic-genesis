@@ -7,11 +7,11 @@ var targeted = false:
 		return targeted
 
 @onready var shader = $MeshInstance3D.mesh.material.next_pass
-
+@onready var info_label = $Label
 @onready var description = $description/MeshInstanceDescription
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass
+	info_label.visible = true # Hide the information label initially
 
 func _on_area_3d_input_event(camera, event, position, normal, shape_idx):
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
@@ -21,8 +21,10 @@ func set_targeted(val):
 	targeted = val
 	if targeted:
 		shader.set_shader_param("strength", 0.2)
+		show_info()
 	else:
 		shader.set_shader_param("strength", 0.0)
+		hide_info()
 		
 func _toggle_mesh_visibility():
 	var target_mesh_instance = $"../description/MeshInstanceDescription"
@@ -38,3 +40,10 @@ func _on_area_3d_mouse_entered():
 func _on_area_3d_mouse_exited():
 	var contour = $MeshInstance3D/MeshInstance3D
 	contour.visible = false # Replace with function body.
+
+func show_info():
+	info_label.text = "Green Planet\n522m\n90m/s"
+	info_label.visible = true
+
+func hide_info():
+	info_label.visible = false
