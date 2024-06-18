@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://splvt8nedutf"]
+
+[ext_resource type="PackedScene" uid="uid://cxma3kjc07v8p" path="res://planet_sun_2.glb" id="1_tu011"]
+
+[node name="planet_sun_2" instance=ExtResource("1_tu011")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0)
+
+[node name="Sphere_001" parent="." index="1"]
+visible = false
