@@ -1,11 +1,15 @@
-[gd_scene load_steps=17 format=3 uid="uid://v447hvg3lggy"]
+[gd_scene load_steps=23 format=3 uid="uid://v447hvg3lggy"]
 
 [ext_resource type="PackedScene" uid="uid://b5lyo17elmm6a" path="res://player.tscn" id="1_nh3vi"]
 [ext_resource type="Texture2D" uid="uid://5ldqxxkbgqxk" path="res://ESO_-_Milky_Way.jpg" id="1_ro0cg"]
 [ext_resource type="PackedScene" uid="uid://cx53ort6nqr8j" path="res://planetas.tscn" id="2_fuiwf"]
-[ext_resource type="Script" path="res://SunCenter.gd" id="4_1drve"]
 [ext_resource type="Script" path="res://MiniMap.gd" id="3_w7l7l"]
+[ext_resource type="Script" path="res://SunCenter.gd" id="4_1drve"]
+[ext_resource type="Texture2D" uid="uid://cij8k6v16oiq8" path="res://8k_earth_daymap.jpg" id="4_3qjyj"]
 [ext_resource type="Texture2D" uid="uid://bn4t7iqlchug3" path="res://art/white-circle-emoji-2048x2048-q0v24q50.png" id="4_qr1n7"]
+[ext_resource type="Texture2D" uid="uid://o3dltpqvy3cy" path="res://4k_eris_fictional.jpg" id="5_aoiqf"]
+[ext_resource type="PackedScene" uid="uid://bs8105aqrta4d" path="res://planet_red.glb" id="6_b1m3n"]
+[ext_resource type="PackedScene" uid="uid://splvt8nedutf" path="res://planet_sun_2.tscn" id="8_q353d"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_e2c3p"]
 panorama = ExtResource("1_ro0cg")
@@ -36,10 +40,11 @@ radius = 900.0
 height = 1800.0
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_1ho0x"]
-radius = 900.0
+radius = 400.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uyubb"]
 albedo_color = Color(0, 1, 1, 1)
+albedo_texture = ExtResource("4_3qjyj")
 
 [sub_resource type="SphereMesh" id="SphereMesh_g0cw5"]
 material = SubResource("StandardMaterial3D_uyubb")
@@ -50,7 +55,7 @@ height = 400.0
 radius = 200.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iaydp"]
-albedo_color = Color(0.590537, 0, 0.145375, 1)
+albedo_texture = ExtResource("5_aoiqf")
 
 [sub_resource type="SphereMesh" id="SphereMesh_gck7a"]
 material = SubResource("StandardMaterial3D_iaydp")
@@ -76,6 +81,7 @@ light_energy = 16.0
 shadow_enabled = true
 
 [node name="Sun" type="StaticBody3D" parent="."]
+visible = false
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Sun"]
 mesh = SubResource("SphereMesh_mvmw4")
@@ -112,6 +118,9 @@ shape = SubResource("SphereShape3D_qruv3")
 
 [node name="planetas" parent="SunCenter" instance=ExtResource("2_fuiwf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.758514, 0.809258, -4.92142)
+
+[node name="planet_red" parent="SunCenter" instance=ExtResource("6_b1m3n")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2237.76, 0, 0)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -158,3 +167,15 @@ offset_bottom = 100.0
 texture = ExtResource("4_qr1n7")
 expand_mode = 1
 stretch_mode = 4
+
+[node name="planet_sun_2" parent="." instance=ExtResource("8_q353d")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="planet_sun_2"]
+light_energy = 2.0
+light_size = 1000.0
+omni_range = 20000.0
+omni_attenuation = 0.000102649
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="planet_sun_2"]
+shape = SubResource("SphereShape3D_1ho0x")
