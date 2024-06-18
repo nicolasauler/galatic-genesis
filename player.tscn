@@ -1,8 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://b5lyo17elmm6a"]
+[gd_scene load_steps=10 format=3 uid="uid://b5lyo17elmm6a"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_kbcbj"]
 [ext_resource type="Script" path="res://Camera3D.gd" id="3_7ji8q"]
 [ext_resource type="Script" path="res://RayCast3D.gd" id="3_20lv8"]
+[ext_resource type="Texture2D" uid="uid://7ancfiqlniem" path="res://focus.png" id="4_dspgi"]
+[ext_resource type="Script" path="res://Reticle.gd" id="5_ppsjo"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_cbfj8"]
 radius = 0.268006
@@ -27,6 +29,7 @@ transform = Transform3D(-0.002, 0, -1.74846e-10, 0, 0.002, 0, 1.74846e-10, 0, -0
 
 [node name="Camera3D" type="Camera3D" parent="CameraPivot"]
 transform = Transform3D(50, 0, 0, 0, 50, 2.38418e-06, 0, -2.38418e-06, 50, 0, 0, 0)
+far = 20000.0
 script = ExtResource("3_7ji8q")
 
 [node name="RayCast3D" type="RayCast3D" parent="CameraPivot/Camera3D"]
@@ -47,3 +50,43 @@ shape = SubResource("BoxShape3D_mjfp7")
 [node name="Body" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.686874, 0)
 shape = SubResource("CylinderShape3D_spgcm")
+
+[node name="HUD" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="Reticle" type="CenterContainer" parent="HUD"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("5_ppsjo")
+
+[node name="Top" type="Line2D" parent="HUD/Reticle"]
+points = PackedVector2Array(0, -5, 0, -15)
+width = 2.0
+
+[node name="Bottom" type="Line2D" parent="HUD/Reticle"]
+points = PackedVector2Array(0, 5, 0, 15)
+width = 2.0
+
+[node name="Left" type="Line2D" parent="HUD/Reticle"]
+points = PackedVector2Array(-5, 0, -15, 0)
+width = 2.0
+
+[node name="Right" type="Line2D" parent="HUD/Reticle"]
+points = PackedVector2Array(5, 0, 15, 0)
+width = 2.0

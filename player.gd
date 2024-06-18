@@ -28,6 +28,10 @@ func _physics_process(delta):
 		direction += camera_transform.basis.z
 	if Input.is_action_pressed("move_forward"):
 		direction -= camera_transform.basis.z
+	if Input.is_action_pressed("move_up"):
+		direction += camera_transform.basis.y
+	if Input.is_action_pressed("move_down"):
+		direction -= camera_transform.basis.y
 	
 	if direction != Vector3.ZERO:
 		direction = global_transform.basis * direction
