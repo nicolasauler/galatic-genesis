@@ -1,6 +1,7 @@
-[gd_scene load_steps=23 format=3 uid="uid://v447hvg3lggy"]
+[gd_scene load_steps=25 format=3 uid="uid://v447hvg3lggy"]
 
 [ext_resource type="PackedScene" uid="uid://b5lyo17elmm6a" path="res://player.tscn" id="1_nh3vi"]
+[ext_resource type="Script" path="res://main.gd" id="1_q2k8x"]
 [ext_resource type="Texture2D" uid="uid://5ldqxxkbgqxk" path="res://ESO_-_Milky_Way.jpg" id="1_ro0cg"]
 [ext_resource type="PackedScene" uid="uid://cx53ort6nqr8j" path="res://planetas.tscn" id="2_fuiwf"]
 [ext_resource type="Script" path="res://MiniMap.gd" id="3_w7l7l"]
@@ -8,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://cij8k6v16oiq8" path="res://8k_earth_daymap.jpg" id="4_3qjyj"]
 [ext_resource type="Texture2D" uid="uid://bn4t7iqlchug3" path="res://art/white-circle-emoji-2048x2048-q0v24q50.png" id="4_qr1n7"]
 [ext_resource type="Texture2D" uid="uid://o3dltpqvy3cy" path="res://4k_eris_fictional.jpg" id="5_aoiqf"]
-[ext_resource type="PackedScene" uid="uid://bs8105aqrta4d" path="res://planet_red.glb" id="6_b1m3n"]
+[ext_resource type="PackedScene" uid="uid://b0fpur2670hnl" path="res://planet_red.tscn" id="7_m76tu"]
 [ext_resource type="PackedScene" uid="uid://splvt8nedutf" path="res://planet_sun_2.tscn" id="8_q353d"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_e2c3p"]
@@ -40,7 +41,7 @@ radius = 900.0
 height = 1800.0
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_1ho0x"]
-radius = 400.0
+radius = 150.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uyubb"]
 albedo_color = Color(0, 1, 1, 1)
@@ -65,13 +66,16 @@ height = 1000.0
 [sub_resource type="SphereShape3D" id="SphereShape3D_qruv3"]
 radius = 500.0
 
+[sub_resource type="Environment" id="Environment_v30hm"]
+
 [node name="Main" type="Node"]
+script = ExtResource("1_q2k8x")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_mtkpm")
 
 [node name="Player" parent="." instance=ExtResource("1_nh3vi")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 48.761, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1000, 1000, 1000)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -0.927921, 0.372777, 0, -0.372777, -0.927921, -1.55237, 1656.3, -0.452393)
@@ -118,9 +122,10 @@ shape = SubResource("SphereShape3D_qruv3")
 
 [node name="planetas" parent="SunCenter" instance=ExtResource("2_fuiwf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.758514, 0.809258, -4.92142)
+visible = false
 
-[node name="planet_red" parent="SunCenter" instance=ExtResource("6_b1m3n")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2237.76, 0, 0)
+[node name="planet_red" parent="SunCenter" instance=ExtResource("7_m76tu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2617, 0, 0)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -151,9 +156,10 @@ render_target_update_mode = 4
 
 [node name="MiniMap" type="Camera3D" parent="CanvasLayer/ColorRect/Container/SubViewport"]
 transform = Transform3D(1, -1.74846e-07, -7.64274e-15, 0, -4.37114e-08, 1, -1.74846e-07, -1, -4.37114e-08, 0, 5000, 0)
+environment = SubResource("Environment_v30hm")
 projection = 1
 current = true
-size = 5000.0
+size = 9000.0
 near = 10.0
 far = 5000.0
 script = ExtResource("3_w7l7l")
@@ -171,11 +177,25 @@ stretch_mode = 4
 [node name="planet_sun_2" parent="." instance=ExtResource("8_q353d")]
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
 
-[node name="OmniLight3D" type="OmniLight3D" parent="planet_sun_2"]
+[node name="Sphere" parent="planet_sun_2" index="0"]
+layers = 513
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="planet_sun_2/Sphere" index="0"]
+shape = SubResource("SphereShape3D_1ho0x")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="planet_sun_2/Sphere" index="1"]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
 light_energy = 2.0
-light_size = 1000.0
 omni_range = 20000.0
 omni_attenuation = 0.000102649
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="planet_sun_2"]
-shape = SubResource("SphereShape3D_1ho0x")
+[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.985196, -0.17143, 0, 0.17143, -0.985196, 0, 0, 0, 1, 0, 1690.8, 0)
+light_cull_mask = 4294967294
+sky_mode = 1
+
+[node name="DirectionalLight3D3" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 0, -2991, 0)
+light_cull_mask = 4294967294
+
+[editable path="planet_sun_2"]
